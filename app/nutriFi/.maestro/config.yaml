@@ -1,0 +1,10 @@
+# config.yaml
+executionOrder:
+  continueOnFailure: false # Default is true
+  flowsOrder:
+    - register.flow
+    - login.flow
+    - recipe.flow
+    - deleteRecipe.flow
+    - plan.flow
+  

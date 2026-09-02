@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="52" failures="0" errors="0" time="37.866">
+  <testsuite name="pushupDetector" errors="0" failures="0" skipped="0" timestamp="2026-04-30T08:12:45" time="26.925" tests="4">
+    <testcase classname="pushupDetector it returns false when visibility or presence is too low" name="pushupDetector it returns false when visibility or presence is too low" time="0.048">
+    </testcase>
+    <testcase classname="pushupDetector it increments counter when the arms are straight" name="pushupDetector it increments counter when the arms are straight" time="0.02">
+    </testcase>
+    <testcase classname="pushupDetector it counts another pushup after going down and back up" name="pushupDetector it counts another pushup after going down and back up" time="0.002">
+    </testcase>
+    <testcase classname="pushupDetector it does not increment counter when the frame is unstable" name="pushupDetector it does not increment counter when the frame is unstable" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="Detecter" errors="0" failures="0" skipped="0" timestamp="2026-04-30T08:12:45" time="27.948" tests="5">
+    <testcase classname="Detecter returns false on first frame and sets baseline" name="Detecter returns false on first frame and sets baseline" time="0.041">
+    </testcase>
+    <testcase classname="Detecter returns false when movement is at or below threshold" name="Detecter returns false when movement is at or below threshold" time="0.002">
+    </testcase>
+    <testcase classname="Detecter returns true when any landmark moves above threshold" name="Detecter returns true when any landmark moves above threshold" time="0.001">
+    </testcase>
+    <testcase classname="Detecter returns false and resets baseline when landmark count changes" name="Detecter returns false and resets baseline when landmark count changes" time="0.001">
+    </testcase>
+    <testcase classname="Detecter reset restores default state" name="Detecter reset restores default state" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="jumpingJacksDetector" errors="0" failures="0" skipped="0" timestamp="2026-04-30T08:12:46" time="27.961" tests="2">
+    <testcase classname="jumpingJacksDetector it retuns false when unstable" name="jumpingJacksDetector it retuns false when unstable" time="0.049">
+    </testcase>
+    <testcase classname="jumpingJacksDetector it increments counter after a successful jumping jack" name="jumpingJacksDetector it increments counter after a successful jumping jack" time="0.016">
+    </testcase>
+  </testsuite>
+  <testsuite name="createVector" errors="0" failures="0" skipped="0" timestamp="2026-04-30T08:12:45" time="28.363" tests="13">
+    <testcase classname="createVector returns the difference between two landmarks" name="createVector returns the difference between two landmarks" time="0.026">
+    </testcase>
+    <testcase classname="createVector returns [0, 0] for identical landmarks" name="createVector returns [0, 0] for identical landmarks" time="0">
+    </testcase>
+    <testcase classname="createVector handles negative coordinates" name="createVector handles negative coordinates" time="0.038">
+    </testcase>
+    <testcase classname="magnitude computes the length of a 3-4-5 triangle" name="magnitude computes the length of a 3-4-5 triangle" time="0.047">
+    </testcase>
+    <testcase classname="magnitude returns 0 for a zero vector" name="magnitude returns 0 for a zero vector" time="0.009">
+    </testcase>
+    <testcase classname="magnitude handles a unit vector" name="magnitude handles a unit vector" time="0.042">
+    </testcase>
+    <testcase classname="Angle returns 90 for perpendicular vectors" name="Angle returns 90 for perpendicular vectors" time="0.01">
+    </testcase>
+    <testcase classname="Angle returns 0 for parallel vectors" name="Angle returns 0 for parallel vectors" time="0.001">
+    </testcase>
+    <testcase classname="Angle returns 180 for opposite vectors" name="Angle returns 180 for opposite vectors" time="0.064">
+    </testcase>
+    <testcase classname="Angle returns 45 for a known 45-degree pair" name="Angle returns 45 for a known 45-degree pair" time="0.001">
+    </testcase>
+    <testcase classname="GetAngle returns 90 for a right angle at the middle landmark" name="GetAngle returns 90 for a right angle at the middle landmark" time="0.003">
+    </testcase>
+    <testcase classname="GetAngle returns 180 for a straight line" name="GetAngle returns 180 for a straight line" time="0.001">
+    </testcase>
+    <testcase classname="GetAngle returns 0 when both arms point the same direction" name="GetAngle returns 0 when both arms point the same direction" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="squatDetector" errors="0" failures="0" skipped="0" timestamp="2026-04-30T08:12:45" time="29.252" tests="4">
+    <testcase classname="squatDetector it increments counter after a full squat" name="squatDetector it increments counter after a full squat" time="0.012">
+    </testcase>
+    <testcase classname="squatDetector it does not increment counter when visibility is too low" name="squatDetector it does not increment counter when visibility is too low" time="0.001">
+    </testcase>
+    <testcase classname="squatDetector it does not increment counter when the user does not go down first" name="squatDetector it does not increment counter when the user does not go down first" time="0.001">
+    </testcase>
+    <testcase classname="squatDetector it can count a squat using the left side landmarks" name="squatDetector it can count a squat using the left side landmarks" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="Dashboard - Streak Calculation Unit Tests" errors="0" failures="0" skipped="0" timestamp="2026-04-30T08:12:46" time="29.433" tests="4">
+    <testcase classname="Dashboard - Streak Calculation Unit Tests UT-STREAK-001: returns zeros when no workouts exist" name="Dashboard - Streak Calculation Unit Tests UT-STREAK-001: returns zeros when no workouts exist" time="0.054">
+    </testcase>
+    <testcase classname="Dashboard - Streak Calculation Unit Tests UT-STREAK-002: calculates correct streak for consecutive days" name="Dashboard - Streak Calculation Unit Tests UT-STREAK-002: calculates correct streak for consecutive days" time="0.048">
+    </testcase>
+    <testcase classname="Dashboard - Streak Calculation Unit Tests UT-STREAK-003: resets streak when there is a gap between workouts" name="Dashboard - Streak Calculation Unit Tests UT-STREAK-003: resets streak when there is a gap between workouts" time="0.001">
+    </testcase>
+    <testcase classname="Dashboard - Streak Calculation Unit Tests UT-STREAK-004: filters out workouts with null ended_at" name="Dashboard - Streak Calculation Unit Tests UT-STREAK-004: filters out workouts with null ended_at" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="useLoginHook" errors="0" failures="0" skipped="0" timestamp="2026-04-30T08:12:45" time="32.145" tests="4">
+    <testcase classname="useLoginHook navigates to home on successful login" name="useLoginHook navigates to home on successful login" time="0.096">
+    </testcase>
+    <testcase classname="useLoginHook sets error message on wrong credentials" name="useLoginHook sets error message on wrong credentials" time="0.023">
+    </testcase>
+    <testcase classname="useLoginHook shows error when email and password are empty" name="useLoginHook shows error when email and password are empty" time="0.031">
+    </testcase>
+    <testcase classname="useLoginHook clears previous error after a successful retry" name="useLoginHook clears previous error after a successful retry" time="0.015">
+    </testcase>
+  </testsuite>
+  <testsuite name="BMI Hook - Unit Tests" errors="0" failures="0" skipped="0" timestamp="2026-04-30T08:12:45" time="32.64" tests="8">
+    <testcase classname="BMI Hook - Unit Tests UT-BMI-001: calculates BMI correctly with valid metric inputs" name="BMI Hook - Unit Tests UT-BMI-001: calculates BMI correctly with valid metric inputs" time="0.138">
+    </testcase>
+    <testcase classname="BMI Hook - Unit Tests UT-BMI-002: categorises underweight correctly" name="BMI Hook - Unit Tests UT-BMI-002: categorises underweight correctly" time="0.005">
+    </testcase>
+    <testcase classname="BMI Hook - Unit Tests UT-BMI-003: categorises overweight correctly" name="BMI Hook - Unit Tests UT-BMI-003: categorises overweight correctly" time="0.01">
+    </testcase>
+    <testcase classname="BMI Hook - Unit Tests UT-BMI-004: categorises obese correctly" name="BMI Hook - Unit Tests UT-BMI-004: categorises obese correctly" time="0.013">
+    </testcase>
+    <testcase classname="BMI Hook - Unit Tests UT-BMI-005: shows alert when weight is empty" name="BMI Hook - Unit Tests UT-BMI-005: shows alert when weight is empty" time="0.011">
+    </testcase>
+    <testcase classname="BMI Hook - Unit Tests UT-BMI-006: shows alert when height is empty" name="BMI Hook - Unit Tests UT-BMI-006: shows alert when height is empty" time="0.009">
+    </testcase>
+    <testcase classname="BMI Hook - Unit Tests UT-BMI-007: calculates BMI correctly with imperial units" name="BMI Hook - Unit Tests UT-BMI-007: calculates BMI correctly with imperial units" time="0.004">
+    </testcase>
+    <testcase classname="BMI Hook - Unit Tests UT-BMI-008: reset form clears all values" name="BMI Hook - Unit Tests UT-BMI-008: reset form clears all values" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="useSignupHook" errors="0" failures="0" skipped="0" timestamp="2026-04-30T08:12:45" time="32.627" tests="8">
+    <testcase classname="useSignupHook creates account and redirects to login on success" name="useSignupHook creates account and redirects to login on success" time="0.068">
+    </testcase>
+    <testcase classname="useSignupHook sets loading to false after signup completes" name="useSignupHook sets loading to false after signup completes" time="0.074">
+    </testcase>
+    <testcase classname="useSignupHook blocks signup when name is empty" name="useSignupHook blocks signup when name is empty" time="0.044">
+    </testcase>
+    <testcase classname="useSignupHook blocks signup when email has no @ symbol" name="useSignupHook blocks signup when email has no @ symbol" time="0.062">
+    </testcase>
+    <testcase classname="useSignupHook blocks signup when password is less than 6 characters" name="useSignupHook blocks signup when password is less than 6 characters" time="0.041">
+    </testcase>
+    <testcase classname="useSignupHook blocks signup when age is out of valid range" name="useSignupHook blocks signup when age is out of valid range" time="0.009">
+    </testcase>
+    <testcase classname="useSignupHook shows error when Supabase signUp fails" name="useSignupHook shows error when Supabase signUp fails" time="0.006">
+    </testcase>
+    <testcase classname="useSignupHook shows error when profile upsert fails after successful auth" name="useSignupHook shows error when profile upsert fails after successful auth" time="0.015">
+    </testcase>
+  </testsuite>
+</testsuites>

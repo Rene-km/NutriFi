@@ -1,0 +1,62 @@
+jobs:
+  getiosbuild:
+    type: get-build
+    params:
+      platform: ios
+      profile: preview
+      simulator: true
+      wait_for_in_progress: true
+
+  buildios:
+    needs: [getiosbuild]
+    if: ${{ needs.getiosbuild.outputs.build_id == '' }}
+    type: build
+    params:
+      platform: ios
+      profile: preview
+
+  cleanup_transient_user:
+    type: custom
+    environment: preview
+    after: [getiosbuild, buildios]
+    steps:
+      - name: Delete transient test user in Supabase
+        run: |
+          EMAIL="${E2E_EMAIL:-e2e.transient@example.com}"
+          PASSWORD="${E2E_PASSWORD:-Password123!}"
+          BASE_URL="${SUPABASE_URL%/}/auth/v1/admin/users"
+
+          echo "Cleaning up test user: $EMAIL"
+
+          RESP=$(curl -sS -G "$BASE_URL" \
+            -H "apikey: $SUPABASE_SERVICE_ROLE_KEY" \
+            -H "Authorization: Bearer $SUPABASE_SERVICE_ROLE_KEY" \
+            --data-urlencode "filter=$EMAIL")
+
+                    USER_ID=$(python3 -c '
+          import json, sys
+          raw = sys.argv[1] if len(sys.argv) > 1 else "{}"
+          email = sys.argv[2] if len(sys.argv) > 2 else ""
+          data = json.loads(raw or "{}")
+          users = data.get("users", [])
+          user = next((u for u in users if u.get("email") == email), None)
+          print(user.get("id", "") if user else "", end="")
+          ' "$RESP" "$EMAIL")
+
+          if [ -n "$USER_ID" ]; then
+            curl -sS -X DELETE "$BASE_URL/$USER_ID" \
+              -H "apikey: $SUPABASE_SERVICE_ROLE_KEY" \
+              -H "Authorization: Bearer $SUPABASE_SERVICE_ROLE_KEY"
+            echo "Deleted user $EMAIL ($USER_ID)"
+          else
+            echo "No user found for $EMAIL"
+          fi
+
+  maestro_test:
+    type: maestro-cloud
+    environment: preview
+    after: [cleanup_transient_user]
+    params:
+      build_id: ${{ after.getiosbuild.outputs.build_id || after.buildios.outputs.build_id }}
+      flows: ".maestro"
+      maestro_project_id: proj_01kqa0x4rde2nt05ptqbj35fdv

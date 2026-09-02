@@ -1,0 +1,70 @@
+appId: com.renekm.nutriFi
+env:
+  E2E_EMAIL: e2e.onboarded@example.com
+  E2E_PASSWORD: Password123!
+---
+
+- launchApp
+- assertVisible:
+    id: login-title
+- tapOn:
+    id: email-input
+- inputText: ${E2E_EMAIL}
+
+- tapOn:
+    id: password-input
+- inputText: ${E2E_PASSWORD}
+- pressKey: "enter"
+- tapOn:
+    id: signin-button
+    waitToSettleTimeoutMs: 5000
+- runFlow:
+    when:
+      visible: "Not Now"
+    commands:
+      - tapOn: "Not Now"
+
+    
+- assertVisible: "Welcome to NutriFi"
+
+
+- tapOn: 
+    id: tab-recipe
+- tapOn:
+    id: meal-plans-chip
+- tapOn:
+    id: meal-plan-details-input
+- inputText: "High protein diet"
+- pressKey: "enter"
+- tapOn:
+    id: meal-plan-days-selector
+- tapOn:
+    id: meal-plan-days-selector-option-1
+- tapOn:
+    id: meal-plan-meals-per-day-selector
+- extendedWaitUntil:
+    visible:
+      id: meal-plan-meals-per-day-selector-option-2
+    timeout: 3000
+- tapOn:
+    id: meal-plan-meals-per-day-selector-option-2
+- tapOn:
+    id: extra-details-input
+- inputText: "Allergic to nuts and avoiding sugary foods"
+- pressKey: "enter"
+- tapOn:
+    id: generate-plan-button
+- extendedWaitUntil:
+    visible: "Preview meal plan"
+    timeout: 35000
+- assertVisible: "Preview meal plan"
+- tapOn:
+    id: preview-plan-button
+    waitToSettleTimeoutMs: 5000
+- tapOn:
+    id: save-plan-button
+- extendedWaitUntil:
+    visible:
+      id: delete-plan-button
+    timeout: 6000
+

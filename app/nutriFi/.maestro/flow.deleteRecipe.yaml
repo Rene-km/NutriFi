@@ -1,0 +1,48 @@
+appId: com.renekm.nutriFi
+env:
+  E2E_EMAIL: e2e.onboarded@example.com
+  E2E_PASSWORD: Password123!
+---
+
+- launchApp
+- assertVisible:
+    id: login-title
+- tapOn:
+    id: email-input
+- inputText: ${E2E_EMAIL}
+
+- tapOn:
+    id: password-input
+- inputText: ${E2E_PASSWORD}
+- pressKey: "enter"
+- tapOn:
+    id: signin-button
+    waitToSettleTimeoutMs: 5000
+- runFlow:
+    when:
+      visible: "Not Now"
+    commands:
+      - tapOn: "Not Now"
+
+    
+- assertVisible: "Welcome to NutriFi"
+
+
+- tapOn: 
+    id: tab-recipe
+- tapOn:
+    id: "saved-chip"
+- tapOn:
+    id: saved-view-tab-1
+- tapOn:
+    id: saved-recipe-card
+- assertVisible: "Ingredients"
+- scrollUntilVisible:
+    element:
+      id: "save-recipe-button"
+    direction: DOWN
+- tapOn:
+    id: "save-recipe-button"
+- assertVisible: "Save recipe"
+
+  

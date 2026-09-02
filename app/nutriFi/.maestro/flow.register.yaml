@@ -1,0 +1,56 @@
+appId: com.renekm.nutriFi
+env:
+  REGISTER_EMAIL: e2e.transient@example.com
+  REGISTER_PASSWORD: Password123!
+---
+- launchApp
+
+- tapOn:
+    id: have-no-account-button
+    retryTapIfNoChange: true
+- tapOn:
+    id: fullname-input
+- inputText: "John Doe"
+- tapOn:
+    id: phone-input
+- inputText: "1234567890"
+- tapOn:
+    id: gender-male-input
+- tapOn:
+    id: goal-improve-fitness-input
+- tapOn:
+    id: age-input
+- inputText: "25"
+- tapOn:
+    id: signup-title
+- tapOn:
+    id: height-input
+- inputText: "180"
+- tapOn:
+    id: signup-title
+- tapOn:
+    id: weight-input
+- inputText: "70"
+- tapOn:
+    id: signup-title
+- tapOn:
+    id: email-input
+- inputText: ${REGISTER_EMAIL}
+- hideKeyboard
+- scrollUntilVisible:
+    element:
+      id: signup-button
+    direction: DOWN
+- tapOn:
+    id: password-input
+- inputText: ${REGISTER_PASSWORD}
+- hideKeyboard
+- tapOn:
+    id: signup-button
+- runFlow:
+    when:
+      visible: "Not Now"
+    commands:
+      - tapOn: "Not Now"
+
+- assertVisible: "Welcome to NutriFi"
