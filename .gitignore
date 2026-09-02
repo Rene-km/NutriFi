@@ -4,6 +4,8 @@ node_modules/
 **/.env
 *.env.local
 .xcode.env.local
+!.env.example
+!**/.env.example
 **/__pycache__/
 *.py[cod]
 .DS_Store

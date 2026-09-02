@@ -25,7 +25,7 @@ This module provides:
 
 2. Set up environment variables:
    - Create a `.env` file in the parent or current directory or ensure `DATABASE_URL` is set in the environment
-   - Format: `DATABASE_URL="postgresql://postgres.lmpapgcnyukbwhhfiecn:[YOUR-PASSWORD]@aws-1-eu-west-1.pooler.supabase.com:6543/postgres`
+   - Format: `DATABASE_URL="postgresql://postgres.[PROJECT-REF]:[YOUR-PASSWORD]@[REGION].pooler.supabase.com:6543/postgres"`
 
 ## Usage
 
