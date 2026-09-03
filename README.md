@@ -115,6 +115,31 @@ dev build (`npx expo run:ios` / `npx expo run:android`).
 |----------|-------------|
 | `DATABASE_URL` | PostgreSQL connection string (Supabase pooler) |
 
+## Run with Docker
+
+A Compose stack is provided for the backend:
+
+```bash
+cp server/.env.example server/.env   # fill in SUPABASE_* and the API keys
+docker compose up --build
+```
+
+This starts three services:
+
+| Service | Description |
+|---------|-------------|
+| `postgres` | Local PostgreSQL 16, exposed on host port `5433` |
+| `migrate` | One-shot job that applies the Drizzle migrations to `postgres` |
+| `server` | FastAPI backend on [http://localhost:8000](http://localhost:8000) |
+
+The app itself uses Supabase for auth and data, so the `server` service still
+needs valid `SUPABASE_*` values in `server/.env`. The `postgres` service is there
+so the Drizzle schema and migrations can be run and tested locally without
+Supabase.
+
+The Expo app is not containerised — mobile apps run on a simulator or device.
+Run it with `npx expo start` as described above.
+
 ## Backend API
 
 | Method | Route | Purpose |

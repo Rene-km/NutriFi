@@ -1,0 +1,52 @@
+# Local development stack for the NutriFi backend.
+#
+#   docker compose up --build
+#
+#   - postgres : local PostgreSQL instance (host port 5433)
+#   - migrate  : one-shot job that applies the Drizzle migrations to postgres
+#   - server   : the FastAPI backend (http://localhost:8000)
+#
+# Note: the running app uses Supabase for auth and data, so the FastAPI service
+# still needs valid SUPABASE_* values in server/.env. The local postgres service
+# exists so the Drizzle schema/migrations can be run and tested without Supabase.
+# Copy the env template first:  cp server/.env.example server/.env
+
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: nutrifi
+      POSTGRES_PASSWORD: nutrifi
+      POSTGRES_DB: nutrifi
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nutrifi -d nutrifi"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  migrate:
+    build: ./db
+    environment:
+      DATABASE_URL: postgres://nutrifi:nutrifi@postgres:5432/nutrifi
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+
+  server:
+    build: ./server
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./server/.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  pgdata:
