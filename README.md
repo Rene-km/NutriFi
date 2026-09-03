@@ -135,7 +135,16 @@ This starts three services:
 The app itself uses Supabase for auth and data, so the `server` service still
 needs valid `SUPABASE_*` values in `server/.env`. The `postgres` service is there
 so the Drizzle schema and migrations can be run and tested locally without
-Supabase.
+Supabase. Because the migrations were authored against Supabase, `db/init/`
+adds a minimal `auth.uid()` stand-in so they apply cleanly on a plain
+PostgreSQL image.
+
+Verify it is up:
+
+```bash
+curl localhost:8000/          # -> {"Hello":"World"}
+open http://localhost:8000/docs
+```
 
 The Expo app is not containerised — mobile apps run on a simulator or device.
 Run it with `npx expo start` as described above.
